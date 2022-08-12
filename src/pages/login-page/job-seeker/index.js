@@ -25,42 +25,43 @@ const LoginAsJobSeeker = () => {
     try {
       setIsLoading(true);
 
-      const { data: response } = await axios.post(`${process.env.REACT_APP_NODE_API}/api/auth/login`, data);
-      // login as as job-seeker account only
-      // if (response.user.role !== 'job-seeker')
-      //   return enqueueSnackbar('You need to login your Job Seeker account', { variant: 'error' });
+      const { data: response } = await axios.post(
+        `${process.env.REACT_APP_NODE_API}/api/auth/login`,
+        data
+      );
 
       enqueueSnackbar(response.message, { variant: 'success' });
       setMe(response.user);
       Cookie.set('userRole', response.user.role); // set data from response to userContext
       setIsLoading(false);
-      history.push('/dashboard/my-profile');
+      history.push('/dashboard');
     } catch (error) {
       setIsLoading(false);
       console.log('error login', error);
-      if (error?.response) return enqueueSnackbar(error?.response?.data?.message, { variant: 'error' });
+      if (error?.response)
+        return enqueueSnackbar(error?.response?.data?.message, { variant: 'error' });
       enqueueSnackbar('login error!', { variant: 'error' });
     }
   };
 
   return (
     <>
-      <ReactHelmet title='Job seeker Login' />
-      <FormWrapper title='Log in as Job Seeker'>
+      <ReactHelmet title="Login" />
+      <FormWrapper title="Log in">
         <form onSubmit={handleSubmit(handleLogin)}>
           <Input
-            label='Email'
-            name='email'
+            label="Email"
+            name="email"
             control={control}
-            placeholder='Email'
+            placeholder="Email"
             style={{ marginBottom: '1rem' }}
             rules={{ required: true }}
           />
           <Input
-            label='Password'
-            name='password'
+            label="Password"
+            name="password"
             control={control}
-            placeholder='password'
+            placeholder="password"
             style={{ marginBottom: '1.75rem' }}
             rules={{ required: true }}
             isPassword
@@ -68,19 +69,19 @@ const LoginAsJobSeeker = () => {
             handleShowPassword={handleShowPassword}
           />
           <Button
-            type='submit'
+            type="submit"
             fullWidth
-            color='primary'
-            variant='contained'
+            color="primary"
+            variant="contained"
             style={{ marginBottom: theme.spacing(2) }}
             disabled={isLoading}
           >
             log in
           </Button>
         </form>
-        <Typography variant='body2' color='textSecondary' align='center' gutterBottom>
+        <Typography variant="body2" color="textSecondary" align="center" gutterBottom>
           Need Account?&nbsp;
-          <Link component={RouterLink} to='/register/job-seeker'>
+          <Link component={RouterLink} to="/register">
             Register now!
           </Link>
         </Typography>
