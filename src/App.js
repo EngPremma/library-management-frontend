@@ -11,7 +11,7 @@ import publicRoutes from 'routes/main-route';
 import { privateRoutes } from 'routes/private-routes';
 // layouts
 import MainLayout from 'layouts/main-layout';
-import DashboardLayout from 'layouts/dashboard-layout';
+// import DashboardLayout from 'layouts/dashboard-layout';
 // components
 import PrivateRoute from 'components/private-route';
 
@@ -31,18 +31,18 @@ const App = () => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Router>
             <UserContextProvider>
-              <MainLayout>
-                <Switch>
-                  {publicRoutes.map(route => (
-                    <Route key={route.path} {...route} />
+              <Switch>
+                {publicRoutes.map(route => (
+                  <Route key={route.path} {...route} />
+                ))}
+                {/* <DashboardLayout> */}
+                <MainLayout>
+                  {privateRoutes.map(route => (
+                    <PrivateRoute key={route.path} {...route} />
                   ))}
-                  <DashboardLayout>
-                    {privateRoutes.map(route => (
-                      <PrivateRoute key={route.path} {...route} />
-                    ))}
-                  </DashboardLayout>
-                </Switch>
-              </MainLayout>
+                </MainLayout>
+                {/* </DashboardLayout> */}
+              </Switch>
             </UserContextProvider>
           </Router>
         </MuiPickersUtilsProvider>

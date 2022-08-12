@@ -44,38 +44,38 @@ const RegisterAsJobSeeker = () => {
 
   return (
     <>
-      <ReactHelmet title='Job Finding: Job seeker registration' />
-      <FormWrapper title='Register as Job Seeker'>
+      <ReactHelmet title="Job Finding: Job seeker registration" />
+      <FormWrapper title="Register as Job Seeker">
         <form onSubmit={handleSubmit(handleRegister)}>
           <Input
-            label='First Name'
-            name='firstname'
+            label="First Name"
+            name="firstname"
             control={control}
-            placeholder='First Name'
+            placeholder="First Name"
             style={{ marginBottom: '1rem' }}
             rules={{ required: true }}
           />
           <Input
-            label='Last Name'
-            name='lastname'
+            label="Last Name"
+            name="lastname"
             control={control}
-            placeholder='Last Name'
+            placeholder="Last Name"
             style={{ marginBottom: '1rem' }}
             rules={{ required: true }}
           />
           <Input
-            label='Email'
-            name='email'
+            label="Email"
+            name="email"
             control={control}
-            placeholder='Email'
+            placeholder="Email"
             style={{ marginBottom: '1rem' }}
             rules={{ required: true }}
           />
           <Input
-            label='Password'
-            name='password'
+            label="Password"
+            name="password"
             control={control}
-            placeholder='password'
+            placeholder="password"
             style={{ marginBottom: '1rem' }}
             rules={{ required: true }}
             isPassword
@@ -83,22 +83,22 @@ const RegisterAsJobSeeker = () => {
             handleShowPassword={handleShowPassword}
           />
           <Input
-            label='Confirm Password'
-            name='confirmPassword'
+            label="Confirm Password"
+            name="confirmPassword"
             control={control}
-            placeholder='confirmPassword'
+            placeholder="confirmPassword"
             style={{ marginBottom: '1.75rem' }}
             rules={{ required: true, validate: value => value === watchPassword }}
             isPassword
             type={showConfirmPassword ? 'text' : 'password'}
             handleShowPassword={handleShowConfirmPassword}
           />
-          <Button type='submit' fullWidth color='primary' variant='contained' disabled={isLoading}>
+          <Button type="submit" fullWidth color="primary" variant="contained" disabled={isLoading}>
             register
           </Button>
         </form>
         <Spacer />
-        <GoToLoginPage navigateTo='/login/job-seeker' />
+        <GoToLoginPage navigateTo="/login" />
       </FormWrapper>
     </>
   );

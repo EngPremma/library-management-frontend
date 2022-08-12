@@ -1,4 +1,7 @@
-import HomePage from 'pages/home-page';
+/**
+ * Public routes
+ */
+
 // register pages
 import RegisterAsJobSeeker from 'pages/register-page/job-seeker';
 import RegisterAsEmployer from 'pages/register-page/employer';
@@ -10,13 +13,8 @@ import JobDetailPage from 'pages/job-detail/job-detail-homepage';
 
 const routes = [
   {
-    exact: true,
-    path: '/',
-    component: HomePage,
-  },
-  {
     exact: false,
-    path: '/login/job-seeker',
+    path: '/login',
     component: LoginAsJobSeeker,
   },
   {
@@ -31,7 +29,7 @@ const routes = [
   },
   {
     exact: false,
-    path: '/register/job-seeker',
+    path: '/register',
     component: RegisterAsJobSeeker,
   },
   {

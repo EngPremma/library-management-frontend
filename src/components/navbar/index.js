@@ -21,19 +21,19 @@ const NavBar = () => {
     <>
       <Link
         className={classes.menuItem}
-        underline='none'
-        color='textSecondary'
+        underline="none"
+        color="textSecondary"
         component={NavLink}
-        to='/login/job-seeker'
+        to="/login/job-seeker"
         activeClassName={classes.activeTab}
       >
         Job Seeker
       </Link>
       <Link
-        underline='none'
-        color='textSecondary'
+        underline="none"
+        color="textSecondary"
         component={NavLink}
-        to='/login/employer'
+        to="/login/employer"
         activeClassName={classes.activeTab}
       >
         Employer
@@ -42,12 +42,24 @@ const NavBar = () => {
   );
 
   return (
-    <AppBar position='sticky' color='transparent' elevation={0}>
+    <AppBar position="sticky" color="transparent" elevation={0}>
       <Toolbar>
-        <IconButton edge='start' className={classes.menuButton} component={RouterLink} to='/' as='hello'>
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          component={RouterLink}
+          to="/"
+          as="hello"
+        >
           <FcBriefcase />
         </IconButton>
-        <Typography variant='h6' color='textPrimary' className={classes.title} component={RouterLink} to='/'>
+        <Typography
+          variant="h6"
+          color="textPrimary"
+          className={classes.title}
+          component={RouterLink}
+          to="/"
+        >
           Job Finding
         </Typography>
         <div className={classes.menu}>{me ? <ProfileButton /> : loginButton}</div>

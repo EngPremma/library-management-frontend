@@ -1,5 +1,6 @@
+import Homepage from 'pages/home-page';
 import Profile from 'pages/profile';
-import HistoryPage from 'pages/history';
+// import HistoryPage from 'pages/history';
 import CompanyInfoPage from 'pages/company-info';
 import DashboardJobsPage from 'pages/dashboard-jobs-list';
 import CreateJobPage from 'pages/create-job';
@@ -7,6 +8,11 @@ import JobDetailPage from 'pages/job-detail';
 // import { roles } from 'constants/role';
 
 export const privateRoutes = [
+  {
+    exact: true,
+    path: '/',
+    component: Homepage,
+  },
   {
     exact: false,
     path: '/dashboard/my-profile',
@@ -42,6 +48,10 @@ export const privateRoutes = [
     exact: false,
     path: '/dashboard/job/detail/:id/employer/:employerId?',
     component: JobDetailPage,
+  },
+  {
+    path: '/*', // if user enter unknown route redirect
+    component: Homepage,
   },
 ];
 
