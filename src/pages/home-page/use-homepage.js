@@ -11,8 +11,6 @@ const useHomepage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [jobs, setJobs] = useState([]);
 
-  console.log('query.search :>> ', query.search);
-
   const handlePaginate = (e, newValue) => {
     setQuery(prev => ({ ...prev, page: newValue }));
   };
