@@ -6,6 +6,8 @@ import PaginationButton from 'components/pagination-button';
 import SearchInput from 'components/search-input';
 import useHomepage from './use-homepage';
 
+import PageTitle from 'components/page-title';
+
 const Homepage = () => {
   const {
     query,
@@ -33,8 +35,9 @@ const Homepage = () => {
   );
 
   return (
-    <Box mt='3rem'>
-      <Typography variant='h4' paragraph align='center' color='primary'>
+    <Box mt={2}>
+      <PageTitle title="Dashboard" />
+      {/* <Typography variant='h4' paragraph align='center' color='primary'>
         Job Finding
       </Typography>
       <Typography color='textSecondary' align='center' paragraph>
@@ -78,7 +81,7 @@ const Homepage = () => {
         <div style={{ height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
           <PaginationButton totalPages={query.totalPages} page={query.page} handleChange={handlePaginate} />
         </div>
-      </div>
+      </div> */}
     </Box>
   );
 };

@@ -31,7 +31,7 @@ const LoginAsJobSeeker = () => {
       }
 
       const response = await auth.login(formData);
-      console.log('response :>> ', response);
+
       localStorage.setItem('access_token', response.access_token);
       setMe({ username: response.username });
       setIsLoading(false);
