@@ -5,6 +5,7 @@ import CompanyInfoPage from 'pages/company-info';
 import DashboardJobsPage from 'pages/dashboard-jobs-list';
 import CreateJobPage from 'pages/create-job';
 import JobDetailPage from 'pages/job-detail';
+import { Redirect } from 'react-router-dom';
 // import { roles } from 'constants/role';
 
 export const privateRoutes = [
@@ -48,10 +49,6 @@ export const privateRoutes = [
     exact: false,
     path: '/dashboard/job/detail/:id/employer/:employerId?',
     component: JobDetailPage,
-  },
-  {
-    path: '/*', // if user enter unknown route redirect
-    component: Homepage,
   },
 ];
 

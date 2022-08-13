@@ -17,7 +17,9 @@ const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const getMe = async () => {
       try {
-        const { data: response } = await axios.get(`${process.env.REACT_APP_NODE_API}/api/auth/get-me`);
+        const { data: response } = await axios.get(
+          `${process.env.REACT_APP_NODE_API}/api/auth/get-me`
+        );
 
         setMe(response.user);
       } catch (error) {
@@ -25,7 +27,7 @@ const UserContextProvider = ({ children }) => {
       }
     };
     // if cookie's name is `me` === `true` run getMe function
-    Cookie.get('me') === 'true' && getMe();
+    // Cookie.get('me') === 'true' && getMe();
   }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
