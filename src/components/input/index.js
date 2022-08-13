@@ -28,22 +28,23 @@ const Input = ({
         render={({ field, fieldState }) => (
           <TextField
             // helperText={!!fieldState.error && 'error'}
+            inputRef={field.ref}
             {...field}
             multiline={multiline}
             minRows={minRows}
             disabled={disabled}
             error={!!fieldState.error}
             style={{ ...style }}
-            size='small'
+            size="small"
             placeholder={placeholder}
-            variant='outlined'
+            variant="outlined"
             fullWidth
             type={type}
             InputProps={
               isPassword
                 ? {
                     endAdornment: (
-                      <InputAdornment position='end'>
+                      <InputAdornment position="end">
                         <IconButton onClick={handleShowPassword}>
                           {type === 'password' ? <AiFillEye /> : <AiFillEyeInvisible />}
                         </IconButton>

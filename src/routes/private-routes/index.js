@@ -5,7 +5,9 @@ import CompanyInfoPage from 'pages/company-info';
 import DashboardJobsPage from 'pages/dashboard-jobs-list';
 import CreateJobPage from 'pages/create-job';
 import JobDetailPage from 'pages/job-detail';
-import { Redirect } from 'react-router-dom';
+
+import BooksListPage from 'pages/books-list-page';
+import CreateBookPage from 'pages/create-book-page';
 // import { roles } from 'constants/role';
 
 export const privateRoutes = [
@@ -13,6 +15,16 @@ export const privateRoutes = [
     exact: true,
     path: '/',
     component: Homepage,
+  },
+  {
+    exact: true,
+    path: '/books',
+    component: BooksListPage,
+  },
+  {
+    exact: true,
+    path: '/books/create',
+    component: CreateBookPage,
   },
   {
     exact: false,
