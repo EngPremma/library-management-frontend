@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import FormWrapper from 'components/login-register-from-wrapper';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { Button, Typography, useTheme, Link } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import Input from 'components/input';
 import ReactHelmet from 'components/react-helmet';
 import { useUserContext } from 'components/context-providers/user-context';
-import Cookie from 'js-cookie';
 
 import auth from 'api/fetcher/auth';
 
@@ -35,7 +33,7 @@ const LoginAsJobSeeker = () => {
       const response = await auth.login(formData);
       console.log('response :>> ', response);
       localStorage.setItem('access_token', response.access_token);
-      setMe(response.username);
+      setMe({ username: response.username });
       setIsLoading(false);
       history.push('/');
     } catch (error) {

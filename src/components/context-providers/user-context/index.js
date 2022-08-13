@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useMemo, useState, useContext } from 'react';
-import Cookie from 'js-cookie';
 import axios from 'axios';
 
 export const UserContext = createContext({
@@ -17,15 +16,14 @@ const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const getMe = async () => {
       try {
-        const { data: response } = await axios.get(
-          `${process.env.REACT_APP_NODE_API}/api/auth/get-me`
-        );
-
-        setMe(response.user);
+        const { data: response } = await axios.get('/users/auth/me');
+        console.log('response :>> ', response);
+        setMe({ username: response.username });
       } catch (error) {
         console.log('error get me', error);
       }
     };
+    getMe();
     // if cookie's name is `me` === `true` run getMe function
     // Cookie.get('me') === 'true' && getMe();
   }, []);

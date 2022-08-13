@@ -5,6 +5,7 @@ import axios from 'axios';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import theme from 'theme';
+
 import UserContextProvider from 'components/context-providers/user-context';
 //routes
 import publicRoutes from 'routes/main-route';
@@ -17,6 +18,18 @@ import PrivateRoute from 'components/private-route';
 
 const App = () => {
   axios.defaults.withCredentials = true;
+  axios.defaults.baseURL = process.env.REACT_APP_NODE_API;
+
+  axios.interceptors.request.use(
+    request => {
+      request.headers['Authorization'] = `bearer ${localStorage.getItem('access_token')}`;
+
+      return request;
+    },
+    error => {
+      return Promise.reject(error);
+    }
+  );
 
   return (
     <SnackbarProvider
