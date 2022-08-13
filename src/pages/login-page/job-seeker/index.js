@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import FormWrapper from 'components/login-register-from-wrapper';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { Button, Typography, useTheme, Link } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import Input from 'components/input';
 import ReactHelmet from 'components/react-helmet';
 import { useUserContext } from 'components/context-providers/user-context';
-import Cookie from 'js-cookie';
+
+import auth from 'api/fetcher/auth';
 
 const LoginAsJobSeeker = () => {
   const { control, handleSubmit } = useForm();
@@ -24,22 +24,26 @@ const LoginAsJobSeeker = () => {
   const handleLogin = async data => {
     try {
       setIsLoading(true);
+      const formData = new FormData();
 
-      const { data: response } = await axios.post(
-        `${process.env.REACT_APP_NODE_API}/api/auth/login`,
-        data
-      );
+      for (const key in data) {
+        formData.append(key, data[key]);
+      }
 
-      enqueueSnackbar(response.message, { variant: 'success' });
-      setMe(response.user);
-      Cookie.set('userRole', response.user.role); // set data from response to userContext
+      const response = await auth.login(formData);
+      console.log('response :>> ', response);
+      localStorage.setItem('access_token', response.access_token);
+      setMe({ username: response.username });
       setIsLoading(false);
-      history.push('/dashboard');
+      history.push('/');
     } catch (error) {
       setIsLoading(false);
-      console.log('error login', error);
+      console.log('error login', error.response);
+
       if (error?.response)
-        return enqueueSnackbar(error?.response?.data?.message, { variant: 'error' });
+        return enqueueSnackbar(error?.response?.data?.detail || 'Something went wrong', {
+          variant: 'error',
+        });
       enqueueSnackbar('login error!', { variant: 'error' });
     }
   };
@@ -50,10 +54,10 @@ const LoginAsJobSeeker = () => {
       <FormWrapper title="Log in">
         <form onSubmit={handleSubmit(handleLogin)}>
           <Input
-            label="Email"
-            name="email"
+            label="Username"
+            name="username"
             control={control}
-            placeholder="Email"
+            placeholder="Username"
             style={{ marginBottom: '1rem' }}
             rules={{ required: true }}
           />

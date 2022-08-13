@@ -43,11 +43,11 @@ const useHomepage = () => {
 
   const handleClickSearch = () => {
     setQuery(prev => ({ ...prev, page: 1 }));
-    fetchJobs();
+    // fetchJobs();
   };
 
   useEffect(() => {
-    fetchJobs();
+    // fetchJobs();
   }, [query.page]);
 
   return {

@@ -27,16 +27,7 @@ const NavBar = () => {
         to="/login/job-seeker"
         activeClassName={classes.activeTab}
       >
-        Job Seeker
-      </Link>
-      <Link
-        underline="none"
-        color="textSecondary"
-        component={NavLink}
-        to="/login/employer"
-        activeClassName={classes.activeTab}
-      >
-        Employer
+        login
       </Link>
     </>
   );
@@ -60,7 +51,7 @@ const NavBar = () => {
           component={RouterLink}
           to="/"
         >
-          Job Finding
+          Library Management
         </Typography>
         <div className={classes.menu}>{me ? <ProfileButton /> : loginButton}</div>
       </Toolbar>
