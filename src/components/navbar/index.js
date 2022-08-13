@@ -1,49 +1,42 @@
 import React, { useContext } from 'react';
-import { AppBar, Toolbar, Typography, makeStyles, IconButton, Link } from '@material-ui/core';
-import { FcBriefcase } from 'react-icons/fc';
+import { AppBar, Toolbar, Typography, makeStyles, Link } from '@material-ui/core';
 import { NavLink, Link as RouterLink } from 'react-router-dom';
 import { UserContext } from 'components/context-providers/user-context';
 import ProfileButton from 'components/navbar/profile-button';
 
-const useStyles = makeStyles(theme => ({
-  menuButton: { marginRight: theme.spacing(2) },
-  title: { textDecoration: 'none', flex: 4 },
-  activeTab: { color: 'black' },
-  menu: { flex: 1, display: 'flex', justifyContent: 'flex-end' },
-  menuItem: { marginRight: theme.spacing(2) },
-}));
+const useStyles = drawerWidth =>
+  makeStyles(theme => ({
+    appBar: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+    menuButton: { marginRight: theme.spacing(2) },
+    title: { textDecoration: 'none', flex: 4 },
+    activeTab: { color: 'black' },
+    menu: { flex: 1, display: 'flex', justifyContent: 'flex-end' },
+    menuItem: { marginRight: theme.spacing(2) },
+  }));
 
-const NavBar = () => {
-  const classes = useStyles();
+const NavBar = ({ drawerWidth }) => {
+  const classes = useStyles(drawerWidth)();
   const { me } = useContext(UserContext);
 
   const loginButton = (
-    <>
-      <Link
-        className={classes.menuItem}
-        underline="none"
-        color="textSecondary"
-        component={NavLink}
-        to="/login/job-seeker"
-        activeClassName={classes.activeTab}
-      >
-        login
-      </Link>
-    </>
+    <Link
+      className={classes.menuItem}
+      underline="none"
+      color="textSecondary"
+      component={NavLink}
+      to="/login/job-seeker"
+      activeClassName={classes.activeTab}
+    >
+      login
+    </Link>
   );
 
   return (
-    <AppBar position="sticky" color="transparent" elevation={0}>
+    <AppBar position="sticky" color="transparent" elevation={0} className={classes.appBar}>
       <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          component={RouterLink}
-          to="/"
-          as="hello"
-        >
-          <FcBriefcase />
-        </IconButton>
         <Typography
           variant="h6"
           color="textPrimary"
